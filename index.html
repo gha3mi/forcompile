@@ -99,7 +99,118 @@
       <div class="row" id='text'>
         <div class="col-md-8">
           <h1>ForCompile</h1>
-          
+          <p><a href="https://github.com/gha3mi/forcompile"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-ForCompile-blue.svg?style=social&amp;logo=github"></a>
+<a href="https://github.com/gha3mi/forcompile/releases"><img alt="Version" src="https://img.shields.io/github/v/tag/gha3mi/forcompile?color=blue&amp;logo=github&amp;style=flat"></a>
+<a href="https://gha3mi.github.io/forcompile/"><img alt="Documentation" src="https://img.shields.io/badge/ford-Documentation%20-blueviolet.svg"></a>
+<a href="https://github.com/gha3mi/forcompile/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/gha3mi/forcompile?color=green"></a>
+<a href="https://github.com/gha3mi/forcompile/actions/workflows/ci.yml"><img alt="Build" src="https://github.com/gha3mi/forcompile/actions/workflows/ci.yml/badge.svg"></a></p>
+<p><img alt="ForCompile" src="https://github.com/gha3mi/forcompile/raw/main/media/logo.png" width="750"></p>
+<p><strong>ForCompile</strong>: A Fortran library to access the Compiler Explorer API.</p>
+<h2>How to use</h2>
+<p><strong>Prerequisites:</strong></p>
+<p>On Ubuntu, you need to install the curl development headers. Use the following command:</p>
+<div class="codehilite"><pre><span></span><code>sudo apt install -y libcurl4-openssl-dev
+</code></pre></div>
+
+<p><strong>Clone the repository:</strong></p>
+<p>You can clone the ForCompile repository from GitHub using the following command:</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/gha3mi/forcompile.git
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> forcompile
+</code></pre></div>
+
+<h2>list of languages</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_1</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">list_compilers</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_1</span><span class="w"></span>
+</code></pre></div>
+
+<h2>list of compilers</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_2</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">list_languages</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_2</span><span class="w"></span>
+</code></pre></div>
+
+<h2>list of compilers with matching language</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_3</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">list_compilers</span><span class="p">(</span><span class="n">language_id</span><span class="o">=</span><span class="s1">&#39;fortran&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_3</span><span class="w"></span>
+</code></pre></div>
+
+<h2>list of libraries</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_4</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">list_libraries</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_4</span><span class="w"></span>
+</code></pre></div>
+
+<h2>list of libraries with matching language</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_5</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">list_libraries</span><span class="p">(</span><span class="n">language_id</span><span class="o">=</span><span class="s1">&#39;fortran&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_5</span><span class="w"></span>
+</code></pre></div>
+
+<h2>list of code formatters</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_6</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">list_formatters</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_6</span><span class="w"></span>
+</code></pre></div>
+
+<h2>fpm dependency</h2>
+<p>If you want to use <code>ForCompile</code> as a dependency in your own fpm project,
+you can easily include it by adding the following line to your <code>fpm.toml</code> file:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[dependencies]</span><span class="w"></span>
+<span class="n">forcompile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">git</span><span class="o">=</span><span class="s">&quot;https://github.com/gha3mi/forcompile.git&quot;</span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h2>API documentation</h2>
+<p>The most up-to-date API documentation for the master branch is available
+<a href="https://gha3mi.github.io/forcompile/">here</a>.
+To generate the API documentation for <code>ForCompile</code> using
+<a href="https://github.com/Fortran-FOSS-Programmers/ford">ford</a> run the following
+command:</p>
+<div class="codehilite"><pre><span></span><code>ford ford.yml
+</code></pre></div>
+
+<h2>Contributing</h2>
+<p>Contributions to <code>ForCompile</code> are welcome!
+If you find any issues or would like to suggest improvements, please open an issue.</p>
         </div>
         <div class="col-md-4">
 	  <div class="well">
@@ -172,7 +283,7 @@
             <p class="text-right">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-09-22T07:14:27.618982             </p>
+ on 2023-09-22T07:24:54.279571             </p>
           </div>
         </div>
         <br>
