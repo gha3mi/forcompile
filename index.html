@@ -192,6 +192,46 @@
 <span class="k">end program </span><span class="n">test_6</span><span class="w"></span>
 </code></pre></div>
 
+<h2>perform a compilation</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_7</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">use </span><span class="n">forcompile</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">compiler_explorer</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   type</span><span class="p">(</span><span class="n">compiler_explorer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ce</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">set_source</span><span class="p">(</span><span class="s2">&quot;&amp;</span>
+<span class="s2">      program hello;&amp;</span>
+<span class="s2">      write(*,*) &#39;Hello World&#39;;&amp;</span>
+<span class="s2">      end program hello&amp;</span>
+<span class="s2">      &quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">set_compiler_id</span><span class="p">(</span><span class="s1">&#39;gfortran132&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="k">options</span><span class="p">%</span><span class="n">set_userArguments</span><span class="p">(</span><span class="s1">&#39;-O3&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="k">options</span><span class="p">%</span><span class="n">set_compilerOptions</span><span class="p">(</span><span class="n">skipAsm</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="n">executorRequest</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="k">options</span><span class="p">%</span><span class="n">set_filters</span><span class="p">(&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">binary</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">binaryObject</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">commentOnly</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">demangle</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">directives</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">execute</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">intel</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">labels</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">libraryCode</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="nb">trim</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="n">debugCalls</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">set_lang</span><span class="p">(</span><span class="s1">&#39;fortran&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">set_allowStoreCodeDebug</span><span class="p">(.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">compile</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">ce</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_7</span><span class="w"></span>
+</code></pre></div>
+
 <h2>fpm dependency</h2>
 <p>If you want to use <code>ForCompile</code> as a dependency in your own fpm project,
 you can easily include it by adding the following line to your <code>fpm.toml</code> file:</p>
@@ -229,7 +269,7 @@ If you find any issues or would like to suggest improvements, please open an iss
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Source Files</h3>
-              <ul><li><a href='./sourcefile/forcompile.f90.html'>forcompile.f90</a></li><li><a href='./sourcefile/test1.f90.html'>test1.f90</a></li><li><a href='./sourcefile/test2.f90.html'>test2.f90</a></li><li><a href='./sourcefile/test3.f90.html'>test3.f90</a></li><li><a href='./sourcefile/test4.f90.html'>test4.f90</a></li><li><a href='./sourcefile/test5.f90.html'>test5.f90</a></li><li><a href='./sourcefile/test6.f90.html'>test6.f90</a></li></ul>
+              <ul><li><a href='./sourcefile/forcompile.f90.html'>forcompile.f90</a></li><li><a href='./sourcefile/test1.f90.html'>test1.f90</a></li><li><a href='./sourcefile/test2.f90.html'>test2.f90</a></li><li><a href='./sourcefile/test3.f90.html'>test3.f90</a></li><li><a href='./sourcefile/test4.f90.html'>test4.f90</a></li><li><a href='./sourcefile/test5.f90.html'>test5.f90</a></li><li><a href='./sourcefile/test6.f90.html'>test6.f90</a></li><li><a href='./sourcefile/test7.f90.html'>test7.f90</a></li><li><a href='./sourcefile/test8.f90.html'>test8.f90</a></li></ul>
             </div>
             <div>
               <ul>
@@ -251,7 +291,7 @@ If you find any issues or would like to suggest improvements, please open an iss
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Procedures</h3>
-              <ul><li><a href='./proc/list_compilers.html'>list_compilers</a></li><li><a href='./proc/list_formatters.html'>list_formatters</a></li><li><a href='./proc/list_languages.html'>list_languages</a></li><li><a href='./proc/list_libraries.html'>list_libraries</a></li></ul>
+              <ul><li><a href='./proc/compile.html'>compile</a></li><li><a href='./proc/deallocate_comnpiler_explorer.html'>deallocate_comnpiler_explorer</a></li><li><a href='./proc/deallocate_compiler_id.html'>deallocate_compiler_id</a></li><li><a href='./proc/deallocate_lang.html'>deallocate_lang</a></li><li><a href='./proc/deallocate_libraries.html'>deallocate_libraries</a></li><li><a href='./proc/deallocate_options.html'>deallocate_options</a></li><li><a href='./proc/deallocate_source.html'>deallocate_source</a></li><li><a href='./proc/deallocate_tools.html'>deallocate_tools</a></li><li><a href='./proc/deallocate_userarguments.html'>deallocate_userArguments</a></li><li><a href='./proc/list_compilers.html'>list_compilers</a></li></ul>
             </div>
             <div>
               <ul>
@@ -262,7 +302,7 @@ If you find any issues or would like to suggest improvements, please open an iss
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Derived Types</h3>
-              <ul><li><a href='./type/compiler_explorer.html'>compiler_explorer</a></li></ul>
+              <ul><li><a href='./type/compiler_explorer.html'>compiler_explorer</a></li><li><a href='./type/compileroptions.html'>compilerOptions</a></li><li><a href='./type/filters.html'>filters</a></li><li><a href='./type/libraries.html'>libraries</a></li><li><a href='./type/options.html'>options</a></li><li><a href='./type/tools.html'>tools</a></li></ul>
             </div>
             <div>
               <ul>
@@ -283,7 +323,7 @@ If you find any issues or would like to suggest improvements, please open an iss
             <p class="text-right">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-09-22T07:24:54.279571             </p>
+ on 2023-09-25T14:28:13.809595             </p>
           </div>
         </div>
         <br>
