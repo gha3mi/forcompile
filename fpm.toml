@@ -22,6 +22,7 @@ source-form       = "free"
 [dependencies]
 http = { git = "https://github.com/fortran-lang/http-client.git" }
 stdlib = "*"
+json-fortran = { git = "https://github.com/jacobwilliams/json-fortran" }
 
 [[test]]
 name       = "test1"
